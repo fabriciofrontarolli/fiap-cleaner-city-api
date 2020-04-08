@@ -1,0 +1,67 @@
+﻿@model CleanerCity.ViewModels.NewRequestViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nova Solicitação</h2>
+
+@using (Html.BeginForm("Index", "Requests", FormMethod.Post))
+{
+    @Html.Label("Título da Requisição")
+    <br />
+    @Html.TextBoxFor(m => m.Request.Description)
+    <br />
+    <br />
+
+    @Html.Label("Tipo da Solicitação")
+    <br />
+    @Html.DropDownListFor(m => m.Request.RequestTypeId, Model.RequestTypesItems)
+    <br /><br />
+
+    @Html.Label("Latitude da Localização")
+    <br />
+    @Html.TextBoxFor(m => m.Request.Latitude, new { id = "Latitude" })
+
+    <br />
+    <br />
+    @Html.Label("Longitude da Localização")
+    <br />
+    @Html.TextBoxFor(m => m.Request.Longitude, new { id = "Longitude" })
+    <br />
+    <br />
+
+    <input type="submit" value="Cadastrar" />
+}
+
+<h3>Informe a Localização da Solicitação (clique no mapa)</h3>
+<div id="requests_maps" style="width: 100%; height: 500px">
+</div>
+
+<script async
+        defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGcLjs8Q3Io0nbHdSE6PWmK_r503ZcdAk"
+        type="text/javascript">
+</script>
+<script type="text/javascript">
+    window.onload = function () {
+        var mapOptions = {
+            center: new google.maps.LatLng(-22.910153, -47.062502),
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var infoWindow = new google.maps.InfoWindow();
+        var map = new google.maps.Map(document.getElementById("requests_maps"), mapOptions);
+
+        console.log('map >>> ', map);
+
+        google.maps.event.addListener(map, 'click', function (e) {
+            document.getElementById('Latitude').value = e.latLng.lat();
+            document.getElementById('Latitude').text = e.latLng.lat();
+            document.getElementById('Longitude').value = e.latLng.lng();
+            document.getElementById('Longitude').text = e.latLng.lng();
+        });
+    }
+
+</script>

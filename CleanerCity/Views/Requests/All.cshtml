@@ -1,0 +1,80 @@
+﻿@model CleanerCity.ViewModels.ViewAllRequestsViewModel
+
+@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Acompanhar Solicitações</h2>
+
+<p>
+    @Html.ActionLink("Nova Requisição", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>Description</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Requests)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!-- Map of Requests -->
+<div id="requests_maps" style="width: 100%; height: 500px">
+</div>
+
+<script
+    async
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGcLjs8Q3Io0nbHdSE6PWmK_r503ZcdAk"
+    type="text/javascript">
+</script>
+<script type="text/javascript">
+    const markers = @Html.Raw(Json.Encode(Model.MapMarkers));
+
+    window.onload = function () {
+        var mapOptions = {
+            center: new google.maps.LatLng(markers[0].Latitude, markers[0].Longitude),
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var infoWindow = new google.maps.InfoWindow();
+        var map = new google.maps.Map(document.getElementById("requests_maps"), mapOptions);
+
+        for (i = 0; i < markers.length; i++) {
+            var data = markers[i]
+            var myLatlng = new google.maps.LatLng(data.Latitude, data.Longitude);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: data.Title
+            });
+            (function (marker, data) {
+                google.maps.event.addListener(marker, "click", function (e) {
+                    infoWindow.setContent(data.Title);
+                    infoWindow.open(map, marker);
+                });
+            })(marker, data);
+        }
+    }
+
+</script>

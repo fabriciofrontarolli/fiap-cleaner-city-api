@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron index-content">
+    <h1>Cleaner City</h1>
+    <p class="lead">Vamos cuidar da nossa cidade! <br/> Cadastre e acompanhe solicitações de limpeza e manutenção no seu bairro e na sua cidade</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Cria uma Nova Requisição</h2>
+        <p>
+            Precisa de algum serviço de limpeza ou manutenção na sua rua? Insira uma nova requisição de serviço para
+            o poder publico atender.
+        </p>
+        <p>@Html.ActionLink("Nova Requisição", "Index", "Requests")</p>
+    </div>
+    <div class="col-md-6">
+        <h2>Acompanhar Requisições</h2>
+        <p>
+            Acompanhe as solicitações que estão cadastras e em andamento no sistema, fique por dentro dos serviços solicitados.
+        </p>
+        <p>@Html.ActionLink("Acompanhar Requisições", "All", "Requests")</p>
+    </div>
+</div>
