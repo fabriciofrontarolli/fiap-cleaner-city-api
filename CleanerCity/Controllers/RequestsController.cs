@@ -49,17 +49,63 @@ namespace CleanerCity.Controllers
 
         public ActionResult All()
         {
-            Requests = ctx.Requests.ToList<Request>();
-            /* Markers */
-            IEnumerable<MapMarker> markers = (
-                                                from r in Requests
-                                                select new MapMarker(r.Description, r.Latitude, r.Longitude)
-                                             ).ToList();
+            Requests = getAllRequests();
+            IEnumerable<MapMarker> markers = getAllRequestsMarkers();
 
             /* View Model */
             ViewAllRequestsViewModel vm = new ViewAllRequestsViewModel(Requests, markers);
 
             return View(vm);
+        }
+
+        /* API */
+        [HttpGet]
+        public JsonResult GetAllRequests()
+        {
+            var requests = getAllRequests();
+            return Json(requests, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllRequestsMarkers()
+        {
+            var markers = getAllRequestsMarkers();
+            return Json(markers, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAllRequestsTypes()
+        {
+            RequestTypes = ctx.RequestTypes.ToList();
+            return Json(RequestTypes, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CreateRequest(Request request)
+        {
+            ctx.Requests.Add(request);
+
+            ctx.SaveChanges();
+
+            return Json(request);
+        }
+
+        private List<Request> getAllRequests()
+        {
+            var requests = ctx.Requests.ToList();
+            return requests;
+        }
+
+        private IEnumerable<MapMarker> getAllRequestsMarkers()
+        {
+            Requests = getAllRequests();
+
+            /* Markers */
+            IEnumerable<MapMarker> markers = (
+                                                from r in Requests
+                                                select new MapMarker(r.Description, r.Latitude, r.Longitude)
+                                             ).ToList();
+            return markers;
         }
     }
 }

@@ -1,20 +1,21 @@
-﻿# FIAP Cleaner City
+﻿# FIAP Cleaner City API
 
 ### Tech
 
-C# with Entity Framework
+C# with Entity Framework and Web API
 
-# ** Landing Page **
+# ** Get All Requests Types **
 
-![Landing Page](https://i.imgur.com/SHpWNEs.png)
+![Get All Request Types](https://i.imgur.com/6mC3tSS.png)
 
-# ** Solicitações Abertas **
 
-![Solicitações Aberts](https://i.imgur.com/0Pw06sGg.png)
+# ** Get All Requests **
 
-# ** Solicitações Abertas **
+![Get All Requests](https://i.imgur.com/Sd6mogs.png)
 
-![Solicitações Aberts](https://i.imgur.com/W8iDmmWg.png)
+# ** Get All Requests Markers **
+
+![Get All Requests](https://i.imgur.com/3NsSf2j.png)
 
 License
 ----

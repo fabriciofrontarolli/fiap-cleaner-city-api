@@ -89,3 +89,9 @@ C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\EntityFramework.dll
 C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\EntityFramework.SqlServer.dll
 C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\EntityFramework.xml
 C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\EntityFramework.SqlServer.xml
+C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\System.Net.Http.Formatting.dll
+C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\System.Web.Http.dll
+C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\System.Web.Http.WebHost.dll
+C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\System.Net.Http.Formatting.xml
+C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\System.Web.Http.xml
+C:\Users\Admin\source\repos\CleanerCity\CleanerCity\bin\System.Web.Http.WebHost.xml
